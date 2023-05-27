@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <div>שלום {{user.firstName}}</div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/">כפר החתולים</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <div class="navbar-nav">
+        <ul class="nav-item" *ngIf="isLoggedIn; else loginLink">
+          <li class="nav-link" routerLink="/admin" routerLinkActive="active" *ngIf="user?.isAdmin">דף מנהל</li>
+          <li class="nav-link" routerLink="/edit-user" routerLinkActive="active">עריכת משתמש</li>
+          <li class="nav-link" routerLink="/rides" routerLinkActive="active">נסיעות</li>
+          <li class="nav-link" routerLink="/foster-care-request" routerLinkActive="active">צור בקשת אומנה</li>
+          <li class="nav-link" routerLink="/all-cats" routerLinkActive="active">כל החתולים</li>
+          <li class="nav-link" routerLink="/login" routerLinkActive="active" (click)="logOut()">התנתק</li>
+        </ul>
+        <ng-template #loginLink>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">התחברות</a>
+          </li>
+        </ng-template>
+      </div>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+</div>
